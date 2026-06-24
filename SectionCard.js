@@ -1,9 +1,9 @@
 import {
-  View,
-  Text,
-  Image,
   Pressable,
+  Text,
   StyleSheet,
+  Image,
+  View,
 } from "react-native";
 
 export default function SectionCard({
@@ -33,16 +33,17 @@ export default function SectionCard({
 
 const styles = StyleSheet.create({
   card: {
+    width: 280,
     backgroundColor:
-      "rgba(0,0,0,0.7)",
+      "rgba(0,0,0,0.75)",
     borderRadius: 20,
     overflow: "hidden",
-    marginBottom: 20,
+    marginRight: 15,
   },
 
   image: {
     width: "100%",
-    height: 200,
+    height: 180,
   },
 
   content: {
@@ -51,13 +52,13 @@ const styles = StyleSheet.create({
 
   title: {
     color: "#FFCE00",
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: "bold",
   },
 
   description: {
     color: "white",
     marginTop: 8,
-    lineHeight: 22,
+    lineHeight: 20,
   },
 });
