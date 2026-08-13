@@ -1,4 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, {
+  useEffect,
+  useRef,
+} from "react";
+
 import {
   Animated,
   Dimensions,
@@ -47,7 +51,7 @@ export default function TransitionScreen({
 
       Animated.delay(300),
 
-      Animated.sequence([
+      Animated.parallel([
         Animated.timing(blackX, {
           toValue: width,
           duration: 500,
@@ -67,18 +71,24 @@ export default function TransitionScreen({
         }),
       ]),
     ]).start(() => {
-      onFinish();
+      if (onFinish) {
+        onFinish();
+      }
     });
   }, []);
 
   return (
     <View style={styles.container}>
+
       <Animated.View
         style={[
+          styles.band,
           styles.black,
           {
             transform: [
-              { translateX: blackX },
+              {
+                translateX: blackX,
+              },
             ],
           },
         ]}
@@ -86,10 +96,13 @@ export default function TransitionScreen({
 
       <Animated.View
         style={[
+          styles.band,
           styles.red,
           {
             transform: [
-              { translateX: redX },
+              {
+                translateX: redX,
+              },
             ],
           },
         ]}
@@ -97,14 +110,18 @@ export default function TransitionScreen({
 
       <Animated.View
         style={[
+          styles.band,
           styles.yellow,
           {
             transform: [
-              { translateX: yellowX },
+              {
+                translateX: yellowX,
+              },
             ],
           },
         ]}
       />
+
     </View>
   );
 }
@@ -112,21 +129,24 @@ export default function TransitionScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "#000000",
+    flexDirection: "column",
+  },
+
+  band: {
+    flex: 1,
+    width: "100%",
   },
 
   black: {
-    flex: 1,
     backgroundColor: "#000000",
   },
 
   red: {
-    flex: 1,
     backgroundColor: "#DD0000",
   },
 
   yellow: {
-    flex: 1,
     backgroundColor: "#FFCE00",
   },
 });
