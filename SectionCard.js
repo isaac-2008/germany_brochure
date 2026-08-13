@@ -1,9 +1,11 @@
+import React from "react";
+
 import {
-  Pressable,
-  Text,
-  StyleSheet,
-  Image,
   View,
+  Text,
+  Image,
+  Pressable,
+  StyleSheet,
 } from "react-native";
 
 export default function SectionCard({
@@ -12,9 +14,23 @@ export default function SectionCard({
   description,
 }) {
   return (
-    <Pressable style={styles.card}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.card,
+        {
+          opacity: pressed ? 0.85 : 1,
+          transform: [
+            {
+              scale: pressed ? 0.98 : 1,
+            },
+          ],
+        },
+      ]}
+    >
       <Image
-        source={{ uri: image }}
+        source={{
+          uri: image,
+        }}
         style={styles.image}
       />
 
@@ -33,17 +49,15 @@ export default function SectionCard({
 
 const styles = StyleSheet.create({
   card: {
-    width: 280,
-    backgroundColor:
-      "rgba(0,0,0,0.75)",
+    backgroundColor: "rgba(0,0,0,0.75)",
     borderRadius: 20,
     overflow: "hidden",
-    marginRight: 15,
+    marginBottom: 20,
   },
 
   image: {
     width: "100%",
-    height: 180,
+    height: 200,
   },
 
   content: {
@@ -52,13 +66,14 @@ const styles = StyleSheet.create({
 
   title: {
     color: "#FFCE00",
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: "bold",
   },
 
   description: {
-    color: "white",
+    color: "#FFFFFF",
     marginTop: 8,
-    lineHeight: 20,
+    lineHeight: 22,
+    fontSize: 15,
   },
 });
